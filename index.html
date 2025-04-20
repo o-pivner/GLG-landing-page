@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        section {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0.5em 0;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #purchase a, .order-now {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            color: white;
+            background-color: #ff6709;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-family: 'Arial', sans-serif;
+        }
+
+        #purchase a:hover, .order-now:hover {
+            background-color: #ff6709;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .book-cover {
+            display: block;
+            margin: 20px auto;
+            width: 400px;
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-cover:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .synopsis {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Random stars background */
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+            border-radius: 50%;
+            animation: shoot 8s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes shoot {
+            0% { 
+                transform: translateX(-100px) translateY(100px); 
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% { 
+                transform: translateX(calc(100vw + 100px)) translateY(-100px); 
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="starsContainer"></div>
+    <section id="purchase">
+        <img src="images/book-cover.jpg" alt="Book Cover" class="book-cover" onclick="window.location.href='https://shop.ingramspark.com/b/084?params=lYKUfPuqKqrhcZDS94AP0pyM06kWSH5BH4zxc5b0iqt'">
+        <a href="https://shop.ingramspark.com/b/084?params=lYKUfPuqKqrhcZDS94AP0pyM06kWSH5BH4zxc5b0iqt" class="order-now">Order Now</a>
+    </section>
+    <section id="about">
+        <h2>About the Book</h2>
+        <div class="synopsis">
+            <p>A man in the midst of a quarter-life crisis reckons with loss, love, and litigators as he searches for answers by asking pretty much all the wrong questions.</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Jack Carlin</p>
+    </footer>
+    <script>
+        // Create random stars
+        document.addEventListener('DOMContentLoaded', function() {
+            const starsContainer = document.getElementById('starsContainer');
+            
+            // Create 100 random stars
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random twinkle delay
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starsContainer.appendChild(star);
+            }
+            
+            // Create 5 shooting stars
+            for (let i = 0; i < 5; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.classList.add('shooting-star');
+                
+                // Random position and timing
+                shootingStar.style.top = `${Math.random() * 70}%`;
+                shootingStar.style.animationDelay = `${Math.random() * 15}s`;
+                
+                starsContainer.appendChild(shootingStar);
+            }
+        });
+    </script>
+</body>
+</html>
