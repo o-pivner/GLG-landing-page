@@ -68,10 +68,11 @@
 
         footer {
             background-color: black;
-            color: white;
+            color: rgba(255,255,255,0.5);
             text-align: center;
             padding: 20px 0;
             width: 100%;
+            font-size: 0.85em;
         }
 
         .synopsis {
@@ -139,19 +140,16 @@
     <div class="stars" id="starsContainer"></div>
     <section id="purchase">
         <img src="images/book-cover.jpg" alt="Book Cover" class="book-cover" onclick="window.location.href='https://shop.ingramspark.com/b/084?params=lYKUfPuqKqrhcZDS94AP0pyM06kWSH5BH4zxc5b0iqt'">
-        <div style="margin-top: 24px;">
+        <div style="margin-top: 48px;">
+            <div style="font-size:1.3em; font-weight:bold; margin-bottom:8px; letter-spacing:0.5px;">Order Here:</div>
             <a href="https://shop.ingramspark.com/b/084?params=lYKUfPuqKqrhcZDS94AP0pyM06kWSH5BH4zxc5b0iqt" class="order-now">Paperback</a>
             <a href="https://shop.ingramspark.com/b/084?params=Uqak089YIpYwNDrgtmtiNmhi4y96QqHhXO3UnRIPwnR" class="order-now">Hardcover</a>
         </div>
     </section>
     <section id="about">
         <h2>About the Book</h2>
-        <div class="synopsis">
+        <div class="synopsis" style="margin-bottom: 64px;">
             <p>A man in the midst of a quarter-life crisis reckons with loss, love, and litigators as he searches for answers by asking pretty much all the wrong questions.</p>
-            <div style="margin-top: 32px;">
-                <a href="https://shop.ingramspark.com/b/084?params=lYKUfPuqKqrhcZDS94AP0pyM06kWSH5BH4zxc5b0iqt" class="order-now">Paperback</a>
-                <a href="https://shop.ingramspark.com/b/084?params=Uqak089YIpYwNDrgtmtiNmhi4y96QqHhXO3UnRIPwnR" class="order-now">Hardcover</a>
-            </div>
         </div>
     </section>
     <footer>
@@ -162,8 +160,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             const starsContainer = document.getElementById('starsContainer');
             
-            // Create 100 random stars
-            for (let i = 0; i < 100; i++) {
+            // Create 400 random stars for a very dense background
+            for (let i = 0; i < 400; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
                 
