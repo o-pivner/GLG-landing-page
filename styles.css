@@ -26,3 +26,25 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
+@media (max-width: 600px) {
+    .book-cover {
+        width: 90vw;
+        max-width: 300px;
+    }
+    section {
+        padding-bottom: 80px;
+        margin: 0 4px;
+    }
+    footer {
+        position: static;
+        padding: 18px 0 24px 0;
+    }
+    .synopsis {
+        padding: 14px 6px 28px 6px;
+        margin-bottom: 30px;
+    }
+    p {
+        font-size: 1em;
+    }
+}
