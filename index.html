@@ -134,6 +134,77 @@
                 opacity: 0;
             }
         }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #181818;
+            border-radius: 10px;
+            padding: 32px 24px 24px 24px;
+            max-width: 480px;
+            width: 90vw;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+            text-align: center;
+            position: relative;
+        }
+        .modal-content h3 {
+            margin-top: 0;
+            color: #ff6709;
+            font-size: 1.5em;
+        }
+        .retailer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin: 24px 0 0 0;
+        }
+        .retailer-item {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s;
+        }
+        .retailer-item:hover {
+            transform: translateY(-5px) scale(1.07);
+        }
+        .retailer-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: #222;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            color: #fff;
+            font-size: 1.6em;
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .close-modal:hover {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -144,6 +215,7 @@
             <div style="font-size:1.3em; font-weight:bold; margin-bottom:8px; letter-spacing:0.5px;">Order Here:</div>
             <a href="https://shop.ingramspark.com/b/084?params=lYKUfPuqKqrhcZDS94AP0pyM06kWSH5BH4zxc5b0iqt" class="order-now">Paperback</a>
             <a href="https://shop.ingramspark.com/b/084?params=Uqak089YIpYwNDrgtmtiNmhi4y96QqHhXO3UnRIPwnR" class="order-now">Hardcover</a>
+            <button class="order-now" id="otherRetailersBtn" style="background:#232323; color:#fff; font-size:1.1em; margin-top:12px;">Other Retailers</button>
         </div>
     </section>
     <section id="about">
@@ -155,6 +227,35 @@
     <footer>
         <p>&copy; 2025 Jack Carlin</p>
     </footer>
+    <div id="otherRetailersModal" class="modal-overlay" style="display:none;">
+        <div class="modal-content">
+            <button class="close-modal" id="closeRetailersModal" aria-label="Close">&times;</button>
+            <h3>Order from Other Retailers</h3>
+            <div class="retailer-grid">
+                <!-- Update the href attribute for each retailer below with your specific book's link. -->
+                <a class="retailer-item" href="https://bookshop.org/p/books/grasping-letting-go/8d4945798187d2ed?ean=9798992777215&next=t" target="_blank" rel="noopener">
+                    <div class="retailer-logo"><img src="https://assets-global.website-files.com/5d7b7b2f5a5c7e7b5c1c6b8f/5e4f2d1e1e5c1e2e2e2e2e2e_bookshop-logo.svg" alt="Bookshop.org" style="width:100%;height:100%;object-fit:contain;"></div>
+                    <span>Bookshop.org</span>
+                </a>
+                <a class="retailer-item" href="https://www.barnesandnoble.com/w/grasping-letting-go-jack-carlin/1147318376?ean=9798992777215" target="_blank" rel="noopener">
+                    <div class="retailer-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Barnes_%26_Noble_logo.svg" alt="Barnes & Noble" style="width:100%;height:100%;object-fit:contain;"></div>
+                    <span>Barnes & Noble</span>
+                </a>
+                <a class="retailer-item" href="https://www.thriftbooks.com/w/grasping-letting-go/55419448/?resultid=1ef8a38d-1e9d-404e-9c59-16de47920b9a#edition=73258425&idiq=84784130" target="_blank" rel="noopener">
+                    <div class="retailer-logo"><img src="https://cdn.thriftbooks.com/images/logo/tb-logo.svg" alt="Thriftbooks" style="width:100%;height:100%;object-fit:contain;"></div>
+                    <span>Thriftbooks</span>
+                </a>
+                <a class="retailer-item" href="https://www.booksamillion.com/p/Grasping-Letting-Go/Jack-Carlin/9798992777215" target="_blank" rel="noopener">
+                    <div class="retailer-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Books-A-Million_logo.svg" alt="Books-A-Million" style="width:100%;height:100%;object-fit:contain;"></div>
+                    <span>Books-A-Million</span>
+                </a>
+                <a class="retailer-item" href="https://www.amazon.com/Grasping-Letting-Go-Jack-Carlin/dp/B0F5RKBNXR/ref=tmm_pap_swatch_0?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.hew_YZACYkyIG5BUyYMcC3GPn5kPGXaJ3HtNc6exz7s22TtzJTnWm9Sgmr5-65KQGoOfFOTB-yqE8DAI0USWvBr4fdECadzRYHWuCssWNuVyHjaQFKUYnnkvgBfrgNg7Kv9tWt5aY4W4R7nTtkUp1rpggdPBUMaPQ6VMjOaKgwF-6oAH467GmcteEGQOiOcI.Je4GM0zWjyoxySJy_U1TvNAf0mgtjkWhy4MCRX3EXp4&qid=1746392367&sr=8-1" target="_blank" rel="noopener">
+                    <div class="retailer-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style="width:100%;height:100%;object-fit:contain;"></div>
+                    <span>Amazon</span>
+                </a>
+            </div>
+        </div>
+    </div>
     <script>
         // Create random stars
         document.addEventListener('DOMContentLoaded', function() {
@@ -191,6 +292,16 @@
                 
                 starsContainer.appendChild(shootingStar);
             }
+            
+            // Modal logic for Other Retailers
+            const otherBtn = document.getElementById('otherRetailersBtn');
+            const modal = document.getElementById('otherRetailersModal');
+            const closeModal = document.getElementById('closeRetailersModal');
+            otherBtn.addEventListener('click', () => { modal.style.display = 'flex'; });
+            closeModal.addEventListener('click', () => { modal.style.display = 'none'; });
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) { modal.style.display = 'none'; }
+            });
         });
     </script>
 </body>
